@@ -43,7 +43,7 @@ async function main() {
   console.log('calculated value:', calculatedValue);
 
   // The final answer should be 42
-  assert(calculatedValue === 42, 'Incorrect value');
+  assert(calculatedValue === 38, 'Incorrect value');
   };
   
 main();
