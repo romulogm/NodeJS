@@ -33,7 +33,7 @@ interface Point {
  
 point.draw();
 
-// Access Modifiers = Public, Private and Protected
+
 
 properties
 modules // add export before class and import when calling it from another archive ex: import { Point } from './point';
@@ -119,5 +119,91 @@ class UserAccount{
 const will = new UserAccount("jorge", 40);
 will.logDetails();
 
+// abstract classes (não é possível criar objetos a partir dela, mas é possível extender)
+abstract class UserAccount{}
+
 // Extension (Heritage)
 
+class CharAccount extends UserAccount {
+    nickname: string;
+    level: number;
+
+    constructor(name: string, age: number, nickname: string, level: number){
+        super(name, age); // super() pega as propriedades da classe extendida
+        
+        this.nickname = nickname;
+        this.level = level;
+    }
+}
+
+
+const john = new CharAccount("Jão", 45, "JOHN", 136);
+
+
+
+// Modifiers = Public, Private, Protected and Readonly 
+Protected só pode ser chamada dentro da própria classe ou da classe extendida. Fora não é possível. 
+
+
+//Acessors - (Faz o GET e o SET por meio de uma função.)
+
+get getLevel() { 
+    return this.level
+    console.log("GET DONE")
+}
+console.log(john.getlevel)
+
+set setLevel(level) {
+    this.level = level
+}
+
+// Interfaces
+
+interface Game {
+    title: string;
+    description: string;
+    genres: string;
+    platform: string[];
+    getSimilars: (title: string) => void;
+}
+    const Dota: Game = {
+        title: "Dota",
+        description: ""
+        genres: ""
+        platform?: ["ps3", "ps4"]
+        getSimilars(title: string) => {
+            console.log("Os similares são..")
+        } 
+    }
+
+// Implement class with interface
+
+
+class createGame implements Game {
+    title: string;
+    description: string;
+    genres: string;
+
+    constructor(title: string, description: string, genres: string){
+        this.title = title;
+        this.description = description;
+        this.genres = genres;
+    }
+}
+
+
+// Vantagens Interfaces: são extensíveis, por isso são boas para criar bibliotecas. Bom para criar classes/objetos POO.
+// Vantagens: Extensões mais simples. Trabalho com tipos primitivos. Recomendado na maioria das vezes. Se 
+
+
+//Generics
+
+function useState() {
+    let state: number
+    function getState() {
+        return state
+    }
+    function setState(newstate: number) {
+        state = newstate;
+    }
+}

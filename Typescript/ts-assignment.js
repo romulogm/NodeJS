@@ -10,7 +10,7 @@ Example:
 // This is what you need to implement
 type MyPickByType = <...>
 
-type MyOnlyBoolean = MyPickByType<{ 
+type MyOnlyBoolean = MyPickByType<{
   name: string;
   count: number;
   isReadonly: boolean
@@ -34,17 +34,4 @@ What should be submitted?
 P.S: There are a number of possible solutions linked here
 
 */
-
-
-
-
-type PickByType<T, U> = { [P in keyof T as T[P] extends U ? P : never]: T[P] }
-
-type MyOnlyBoolean = PickByType<{ 
-  name: string;
-  count: number;
-  isReadonly: boolean
-  isEnable: boolean
-}, boolean> 
-
-console.log(typeof MyOnlyBoolean)
+console.log(typeof MyOnlyBoolean);
