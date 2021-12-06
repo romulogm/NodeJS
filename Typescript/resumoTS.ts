@@ -206,4 +206,28 @@ function useState() {
     function setState(newstate: number) {
         state = newstate;
     }
+    return { getState, setState };
 }
+
+const newstate = useState();
+
+
+S - State
+T Type
+K Key
+V value
+E Element
+
+//Type Utilities 
+
+const typeName = Readonly<typeName>
+const typeName = partial<typeName>
+
+type typeNovo = Pick<typeName, "title" | "description">
+
+type typeNovo = Omit<typeName, "description">
+
+Generics 
+MappedTypes
+ConditionalTypes
+LookupTypes
