@@ -1,0 +1,2 @@
+docker exec -it mongoCRUD bash
+https://www.freecodecamp.org/news/learn-mongodb-a4ce205e7739/

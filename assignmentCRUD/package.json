@@ -1,0 +1,21 @@
+{
+  "name": "assignmentcrud",
+  "version": "1.0.0",
+  "description": "CRUD for LevelUP AvenueCode ",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "keywords": [
+    "CRUD",
+    "Node",
+    "Express",
+    "MongoDB"
+  ],
+  "author": "Rômulo Medeiros",
+  "license": "MIT",
+  "dependencies": {
+    "typescript": "^4.5.2"
+  }
+}
