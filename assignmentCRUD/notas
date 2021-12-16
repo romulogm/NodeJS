@@ -1,2 +1,20 @@
-docker exec -it mongoCRUD bash
+
 https://www.freecodecamp.org/news/learn-mongodb-a4ce205e7739/
+
+mongodb://romulogm:safeadmin@localhost:27017/admin
+
+docker run -v ~/docker --name mongodb -p 27017:27017 -e MONGO_INITDB_ROOT_USERNAME=romulogm -e MONGO_INITDB_ROOT_PASSWORD=safeadmin mongo
+docker exec -it containername bash
+
+docker exec -it containername mongod - runs mongodatabase
+docker exec -it containername mongo - open shell
+docker exec -it containername
+
+
+
+
+install dev dependencie: npm i nodemom -D
+
+
+
+Books CRUD : https://github.com/sidhantpanda/docker-express-typescript-boilerplate/tree/master/src
