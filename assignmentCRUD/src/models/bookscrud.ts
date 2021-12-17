@@ -1,10 +1,9 @@
 import { BooksInterface } from './books';
 import booksMongooseModel from './schema';
-import books from './schema';
 import schemaBooks from './schema';
 
 export const getBooksList = async (req:any, res:any) => {
-    await schemaBooks.find((err: any, result: any) => {
+    booksMongooseModel.find((err: any, result: any) => {
         if (err) {
           res.send(console.log(err));
         } else {
@@ -27,18 +26,40 @@ export const createBook = async (req:any, res:any) => {
         }
   });
 };
-/*
+
 export const deleteBook = async (req:any, res:any) => {
   const request: BooksInterface =  req.body;
-  let deletebook = new booksMongooseModel(request);
-  await booksMongooseModel.deleteBook(deletebook)findOneAndRemove(deletebook), (err:any, result:any) => {
+  booksMongooseModel.findOneAndRemove(request, (err:any, result:any) => {
     if (err) {
         res.send(console.log(err));
         
       } else {
         console.log(JSON.stringify(result));
         res.send(result);
-      });
+      }})};
+
+
+export const updateBook = async (req:any, res:any) => {
+  const request: BooksInterface =  req.body;
+  booksMongooseModel.findOneAndReplace(request, request, { new: true }, (err: any, result: any) => {
+    if (err) {
+    res.send(console.log(err));
+    } else {
+    res.send(result);
+    }});
 };
 
+/*
+export const updateBook = async (req:any, res:any) => {
+    const request: BooksInterface =  req.body;
+    const foundBook = await booksMongooseModel.findOne(request).exec();
+    if (foundBook != null) {
+      await booksMongooseModel.findOneAndUpdate(foundBook._id , request, (err: any, result: any) => {
+        if (err) {
+        res.send(console.log(err));
+        } else {
+          console.log(JSON.stringify(result));
+          res.send(result);
+        }});
+      }};
 */

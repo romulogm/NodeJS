@@ -59,13 +59,9 @@ app.use((req, res, next) => {
   next();
 });
 
-authorisedRoute.use('/createbook', function (req, res, next) {
-  console.log(req.body)
-  next()
-});
 
 authorisedRoute.get('/', (req, res) => res.send('Welcome to Books CRUD...'));
 authorisedRoute.get('/getbookslist', bookCRUD.getBooksList);
 authorisedRoute.post('/createbook', bookCRUD.createBook);
-// authorisedRoute.post('/updateBook',bookCRUD.updateBook);
-//authorisedRoute.delete('/deleteBook',bookCRUD.deleteBook);
+authorisedRoute.patch('/updateBook',bookCRUD.updateBook);
+authorisedRoute.delete('/deleteBook',bookCRUD.deleteBook);

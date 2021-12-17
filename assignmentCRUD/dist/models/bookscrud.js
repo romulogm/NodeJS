@@ -39,25 +39,20 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.createBook = exports.getBooksList = void 0;
+exports.updateBook = exports.deleteBook = exports.createBook = exports.getBooksList = void 0;
 var schema_1 = __importDefault(require("./schema"));
-var schema_2 = __importDefault(require("./schema"));
 var getBooksList = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
     return __generator(this, function (_a) {
-        switch (_a.label) {
-            case 0: return [4 /*yield*/, schema_2.default.find(function (err, result) {
-                    if (err) {
-                        res.send(console.log(err));
-                    }
-                    else {
-                        console.log(JSON.stringify(result));
-                        res.send(result);
-                    }
-                })];
-            case 1:
-                _a.sent();
-                return [2 /*return*/];
-        }
+        schema_1.default.find(function (err, result) {
+            if (err) {
+                res.send(console.log(err));
+            }
+            else {
+                console.log(JSON.stringify(result));
+                res.send(result);
+            }
+        });
+        return [2 /*return*/];
     });
 }); };
 exports.getBooksList = getBooksList;
@@ -84,18 +79,50 @@ var createBook = function (req, res) { return __awaiter(void 0, void 0, void 0, 
     });
 }); };
 exports.createBook = createBook;
+var deleteBook = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var request;
+    return __generator(this, function (_a) {
+        request = req.body;
+        schema_1.default.findOneAndRemove(request, function (err, result) {
+            if (err) {
+                res.send(console.log(err));
+            }
+            else {
+                console.log(JSON.stringify(result));
+                res.send(result);
+            }
+        });
+        return [2 /*return*/];
+    });
+}); };
+exports.deleteBook = deleteBook;
+var updateBook = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var request;
+    return __generator(this, function (_a) {
+        request = req.body;
+        schema_1.default.findOneAndReplace(request, request, { new: true }, function (err, result) {
+            if (err) {
+                res.send(console.log(err));
+            }
+            else {
+                res.send(result);
+            }
+        });
+        return [2 /*return*/];
+    });
+}); };
+exports.updateBook = updateBook;
 /*
-export const deleteBook = async (req:any, res:any) => {
-  const request: BooksInterface =  req.body;
-  let deletebook = new booksMongooseModel(request);
-  await booksMongooseModel.deleteBook(deletebook)findOneAndRemove(deletebook), (err:any, result:any) => {
-    if (err) {
+export const updateBook = async (req:any, res:any) => {
+    const request: BooksInterface =  req.body;
+    const foundBook = await booksMongooseModel.findOne(request).exec();
+    if (foundBook != null) {
+      await booksMongooseModel.findOneAndUpdate(foundBook._id , request, (err: any, result: any) => {
+        if (err) {
         res.send(console.log(err));
-        
-      } else {
-        console.log(JSON.stringify(result));
-        res.send(result);
-      });
-};
-
+        } else {
+          console.log(JSON.stringify(result));
+          res.send(result);
+        }});
+      }};
 */ 

@@ -61,12 +61,8 @@ app.use(function (req, res, next) {
     res.header('Cache-Control', 'private, no-cache, no-store, must-revalidate');
     next();
 });
-authorisedRoute.use('/createbook', function (req, res, next) {
-    console.log(req.body);
-    next();
-});
 authorisedRoute.get('/', function (req, res) { return res.send('Welcome to Books CRUD...'); });
 authorisedRoute.get('/getbookslist', bookCRUD.getBooksList);
 authorisedRoute.post('/createbook', bookCRUD.createBook);
-// authorisedRoute.post('/updateBook',bookCRUD.updateBook);
-//authorisedRoute.delete('/deleteBook',bookCRUD.deleteBook);
+authorisedRoute.patch('/updateBook', bookCRUD.updateBook);
+authorisedRoute.delete('/deleteBook', bookCRUD.deleteBook);
