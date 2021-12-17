@@ -5,15 +5,19 @@ services:
     container_name: NODEJS_SERVER
     build: '.'
     volumes:
-      - ./:/node-app
-      - ./node_modules:/node-app/node_modules
+      - ./:/assignmentcrud
+      - ./node_modules:/assignmentcrud/node_modules
+      #- ./:/node-app
+      #- ./node_modules:/node-app/node_modules
     depends_on:
       - db
     links:
       - db
     ports:
       - '8080:8080'
-
+    networks:
+      - node-network
+    command: ./src/wait-for.sh db:27017 -- node ./dist/index.js
   db:
     image: 'mongo'
     container_name: mongodatabase
@@ -21,4 +25,10 @@ services:
       - '27017:27017'
     volumes:
       - ./data/db:/data/db
+    networks:
+      - node-network
+      
+networks:
+  node-network:
+    driver: bridge
 

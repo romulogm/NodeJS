@@ -1,15 +1,23 @@
-FROM node:11-alpine
+FROM node:16
 
 WORKDIR /assignmentcrud
 
-COPY package.json .
+#COPY . .
 
-RUN npm install --quiet
+COPY package*.json ./
 
-# RUN npm install nodemon -g --quiet
+RUN npm install
 
-COPY . . 
+COPY src ./src
+
+COPY tsconfig.json ./
+
+#COPY tsconfig.json ./
+
+RUN npm run build
 
 EXPOSE 8080
 
-CMD node . index.js
+RUN chmod +x ./src/wait-for-it.sh
+
+CMD ["node", "dist/index.js"]

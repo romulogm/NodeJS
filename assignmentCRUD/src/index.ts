@@ -27,7 +27,7 @@ app.use(express.json());
 
 // DB CONNECTION
 
-const uri = 'mongodb://127.0.0.1:27017/booksdata';
+const uri = 'mongodb://host.docker.internal:27017/mongodatabase';
 
 mongoose.connect(uri, (err: any) => {
   if (err) {

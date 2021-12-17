@@ -41,7 +41,7 @@ app.use((0, helmet_1.default)());
 app.use((0, cors_1.default)());
 app.use(express_1.default.json());
 // DB CONNECTION
-var uri = 'mongodb://127.0.0.1:27017/booksdata';
+var uri = 'mongodb://host.docker.internal:27017/mongodatabase';
 mongoose_1.default.connect(uri, function (err) {
     if (err) {
         console.log(err.message);

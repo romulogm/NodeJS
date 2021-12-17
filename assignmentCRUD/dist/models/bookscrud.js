@@ -112,17 +112,3 @@ var updateBook = function (req, res) { return __awaiter(void 0, void 0, void 0, 
     });
 }); };
 exports.updateBook = updateBook;
-/*
-export const updateBook = async (req:any, res:any) => {
-    const request: BooksInterface =  req.body;
-    const foundBook = await booksMongooseModel.findOne(request).exec();
-    if (foundBook != null) {
-      await booksMongooseModel.findOneAndUpdate(foundBook._id , request, (err: any, result: any) => {
-        if (err) {
-        res.send(console.log(err));
-        } else {
-          console.log(JSON.stringify(result));
-          res.send(result);
-        }});
-      }};
-*/ 

@@ -48,18 +48,3 @@ export const updateBook = async (req:any, res:any) => {
     res.send(result);
     }});
 };
-
-/*
-export const updateBook = async (req:any, res:any) => {
-    const request: BooksInterface =  req.body;
-    const foundBook = await booksMongooseModel.findOne(request).exec();
-    if (foundBook != null) {
-      await booksMongooseModel.findOneAndUpdate(foundBook._id , request, (err: any, result: any) => {
-        if (err) {
-        res.send(console.log(err));
-        } else {
-          console.log(JSON.stringify(result));
-          res.send(result);
-        }});
-      }};
-*/
