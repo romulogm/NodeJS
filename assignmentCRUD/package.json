@@ -17,16 +17,17 @@
   "author": "Rômulo Medeiros",
   "license": "MIT",
   "dependencies": {
+    "@types/morgan": "^1.9.3",
     "body-parser": "^1.19.1",
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "helmet": "^4.6.0",
     "mongodb": "^4.2.1",
     "moongoose": "^0.0.4",
-    "typescript": "^4.5.2",
-    "nodemon": "^2.0.15"
+    "morgan": "^1.10.0",
+    "nodemon": "^2.0.15",
+    "typescript": "^4.5.2"
   },
-
   "devDependencies": {
     "@types/cors": "^2.8.12",
     "@types/express": "^4.17.13",

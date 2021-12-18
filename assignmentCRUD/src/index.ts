@@ -1,9 +1,9 @@
 import cors from 'cors';
-import bodyParser from 'body-parser';
 import express from 'express';
 import mongoose from 'mongoose';
 import helmet from "helmet";
 import * as bookCRUD from './models/bookscrud';
+import morgan from 'morgan';
 
 //RUN SERVER 
 
@@ -23,6 +23,8 @@ app.listen(PORT, () => {
 app.use(helmet());
 app.use(cors());
 app.use(express.json());
+app.use(morgan('combined'));
+
 
 
 // DB CONNECTION
@@ -38,10 +40,13 @@ mongoose.connect(uri, (err: any) => {
 });
 
 
+
+
 // ROUTES
 
 const authorisedRoute = express.Router();
 app.use("/api", authorisedRoute);
+
 
 app.use((req, res, next) => {
   res.setHeader(
