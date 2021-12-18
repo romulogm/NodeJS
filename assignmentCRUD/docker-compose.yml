@@ -7,8 +7,6 @@ services:
     volumes:
       - ./:/assignmentcrud
       - ./node_modules:/assignmentcrud/node_modules
-      #- ./:/node-app
-      #- ./node_modules:/node-app/node_modules
     depends_on:
       - db
     links:
@@ -17,14 +15,14 @@ services:
       - '8080:8080'
     networks:
       - node-network
-    command: ./src/wait-for.sh db:27017 -- node ./dist/index.js
+    command: ./src/wait-for.sh host.docker.internal:27017 -- node ./dist/index.js
   db:
     image: 'mongo'
     container_name: mongodatabase
     ports:
       - '27017:27017'
     volumes:
-      - ./data/db:/data/db
+      - ./data/db:/data/db 
     networks:
       - node-network
       
