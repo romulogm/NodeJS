@@ -6,12 +6,41 @@ const puppeteer = require('puppeteer');
 
 const browser = await puppeteer.launch({ headless: false });
 const page = await browser.newPage();
-await page.goto('https://lendoosclassicosluizruffato.blogspot.com');
-//
-await page.waitForSelector("p:nth-child(1) > span");
+await page.goto('http://lendoosclassicosluizruffato.blogspot.com/2021/11/o-amigo-perdido-hella-haasse-1918-2011.html');
 
-const title = await page.$eval(document.querySelector("p:nth-child(1) > span"), (title) => title.innerText); 
+const reviewPost = {
+  "title": ,
+  "content": ,
+  "avaliation": ,
+  "author": ,
+  "translation": ,
+  "edition":
+};
 
+//CONTENT
+const title = await page.$("span > p:nth-child(1) > span");
+const text = await page.evaluate(title => title.textContent, title); //or const text = await (await title.getProperty('textContent')).jsonValue();
+
+//TITLE
+
+//AVALIATION 
+
+//FRONT COVER IMG
+
+//AUTHOR
+
+//TRANSLATION
+
+//EDITION DATA
+
+
+console.log(text);
+await browser.close();
+
+})();
+
+
+/*
 const image = await page.$eval("div.separator > a > img", (image) =>
       image.getAttribute("src")
     );
@@ -25,8 +54,9 @@ const post = {
     content
   };
 
-posts.push(post)
-
+posts.push(post);
+console.log(post);
+*/
 /*
 let haveNext = false;
 
@@ -45,12 +75,4 @@ do {
     haveNext = true; 
   }
 } while (haveNext);
-
-await browser.close();
 */
-})();
-
-// "#post-body-2236296491671054818 > div:nth-child(1)"
-// "document.querySelector("#post-body-2236296491671054818 > div:nth-child(2) > div:nth-child(19) > span:nth-child(1)")"
-
-//http://www2.decom.ufop.br/terralab/tutorial-como-realizar-um-scraping-de-dados-em-um-website/
