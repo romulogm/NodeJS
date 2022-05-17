@@ -12,19 +12,14 @@ const reviewPost = {
   "title": "",
   "content": "",
   "avaliation": "",
-  "author": {
-    name: "",
-    country: "",
-    lifeTime: ""
-  },
-  "translation": "",
+  "author": "",
+  "translator": "",
   "edition": ""
 };
 
 //Get post ID
 const postMeta = await page.$("#Blog1 > div.blog-posts.hfeed > div > div > div > div.post.hentry.uncustomized-post-template > meta:nth-child(3)");
 const postID = await page.evaluate(postMeta => postMeta.content, postMeta); 
-
 
 // CONTENT
 const content = await page.$(`#post-body-${postID} > span:nth-child(9) > p:nth-child(1)`);
@@ -43,23 +38,27 @@ reviewPost.avaliation = avaliationText;
 
 //FRONT COVER IMG
 
-
-//AUTHOR.name
-//const author = await page.$(`#post-body-${postID} > p:nth-child(2) > span:nth-child(1) > b > span`);
+//AUTHOR 
 const author = await page.$(`#post-body-${postID} > p:nth-child(2)`);
 const authorText = await page.evaluate(author => author.textContent, author);
-reviewPost.author.name = authorText;
+reviewPost.author = authorText;
 
-//AUTHOR.country
+//TRANSLATOR 
+const translator = await page.$(`#post-body-${postID} > p:nth-child(3) > span:nth-child(1)`);
+const translatorText = await page.evaluate(translator => translator.textContent, translator);
+reviewPost.translator = translatorText;
 
-//AUTHOR.lifeTime
+//EDITION DATA 
+const edition = await page.$(`#post-body-${postID} > p:nth-child(4) > span`);
+const editionText = await page.evaluate(edition => edition.textContent, edition);
+reviewPost.edition = editionText;
 
-//TRANSLATION
+//GET NEXT LINK
+const next = await page.$("#Blog1_blog-pager-older-link");
+const nextHref = await page.evaluate(next => next.getAttribute("href"), next);
 
-//EDITION DATA
 
-
-console.log(reviewPost);
+console.log(nextHref);
 await browser.close();
 
 })();
