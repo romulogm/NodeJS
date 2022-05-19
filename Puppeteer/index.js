@@ -6,7 +6,7 @@ const puppeteer = require('puppeteer');
 
 const browser = await puppeteer.launch({ headless: false });
 const page = await browser.newPage();
-await page.goto('http://lendoosclassicosluizruffato.blogspot.com/2021/11/o-amigo-perdido-hella-haasse-1918-2011.html');
+await page.goto('https://lendoosclassicosluizruffato.blogspot.com/2021/11/a-fera-na-selva-henry-james-1843-1916.html');
 
 const reviewPost = {
   "title": "",
@@ -27,7 +27,7 @@ const contentText = await page.evaluate(content => content.textContent, content)
 reviewPost.content = contentText;
 
 // TITLE
-const title = await page.$(`#post-body-${postID} > p:nth-child(1) > span`);
+const title = await page.$(`#post-body-${postID} > p:nth-child(1)`);
 const titleText = await page.evaluate(title => title.textContent, title);
 reviewPost.title = titleText;
 
@@ -57,8 +57,7 @@ reviewPost.edition = editionText;
 const next = await page.$("#Blog1_blog-pager-older-link");
 const nextHref = await page.evaluate(next => next.getAttribute("href"), next);
 
-
-console.log(nextHref);
+console.log(reviewPost);
 await browser.close();
 
 })();
